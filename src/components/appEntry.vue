@@ -4,8 +4,10 @@
             <ul>
                 <li><input  type="text" :placeholder="entries[index]" required/></input></li>
             </ul>
-                <button type="button" v-on:click="index++ && checkIndex()">Next</button>
-                <button type="button" v-on:click="index++ && checkIndex()">OK</button>
+            <div class="buttonG">
+              <button type="button" v-on:click="index++ && checkIndex()">Next</button>
+              <button v-if="state" type="button">OK</button>
+            </div>
         </div>
 
     </div>
@@ -18,13 +20,15 @@ export default {
             textSize:null,
             textDesc:"",
             entries:['Name','Size', 'Description','DataType'],
-            index:0
+            index:0,
+            state:false
         }
     },
     methods:{
         checkIndex:function(){
             if(this.index>=4){
-                this.index=0;
+                this.index=0,
+                this.state=true
             }
         }
     }
@@ -60,9 +64,15 @@ export default {
         font-size: 30px;
         padding: 10px 20px 10px 20px;
         border: 0;
-        margin-left: 25px;
+        margin: 0px 10px 10px 10px;
     }
     button:hover{
         background:#3498db;
+    }
+    .buttonG{
+      display: flex;
+      flex-flow: row;
+      flex: 1 1 0;
+      justify-content: center;
     }
 </style>
