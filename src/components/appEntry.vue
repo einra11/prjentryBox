@@ -6,7 +6,9 @@
             </ul>
             <div class="buttonG">
               <button type="button" v-on:click="index++ && checkIndex()">Next</button>
+               <transition name="fade">
               <button v-if="state" type="button">OK</button>
+            </transition>
             </div>
         </div>
 
@@ -31,7 +33,7 @@ export default {
                 this.state=true
             }
         }
-    }
+    },
 }
 </script>
 
@@ -75,4 +77,10 @@ export default {
       flex: 1 1 0;
       justify-content: center;
     }
+  .fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 </style>
