@@ -1,7 +1,7 @@
 <template>
   <div id="globe">
       <div class="">
-          <app-head v-bind:title="title"></app-head>
+          <app-head class="head1" v-bind:title="title"></app-head>
           <app-entry></app-entry>
       </div>
   </div>
@@ -27,9 +27,14 @@ components:{
 body{
 margin: 0;
 margin-top: 40px;
+background: #e1e4ea;
 }
 #globe{
     display: flex;
     justify-content: center;
+}
+.head1{
+  box-shadow: 0px 0px 45px -15px rgba(0,0,0,0.44);
+  border-radius: 3px 3px 0px 0px;
 }
 </style>

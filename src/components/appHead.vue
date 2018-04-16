@@ -50,8 +50,4 @@ input[type="text"]{
 input[type="text"]:hover{
     cursor: cell;
 }
-input[type="text"]:active{
-    cursor: text;
-    border: solid 1px #222;
-}
 </style>
