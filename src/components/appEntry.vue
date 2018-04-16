@@ -48,7 +48,7 @@ export default {
     .module1{
         font-family:'Fira Sans', sans-serif;
         max-width: 500px;
-        background: #f0eeeb;
+        background: #e4e3f7;
         padding: 10px;
         display: flex;
         flex-flow: row;
@@ -99,8 +99,8 @@ export default {
 
     .modal{
       text-align: center;
-      color: #222;
-      background:yellow;
+      color: #fff;
+      background:#01ba20;
       width: 150px;
       padding: 5px;
       margin-left: 0;
