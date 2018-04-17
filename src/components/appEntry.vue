@@ -6,8 +6,13 @@
             <div class="buttonG">
               <button type="button" v-on:click="testmyreg">OK</button>
             </div>
-            <p v-for="extract in extracted">{{extract}}</p>
-            <p v-for="samplevar1 in samplevar">'{{samplevar1}}'</p>
+
+            <ul v-for="extract in extracted" class="tableUI">
+              <li>{{extract}}</li>
+            </ul>
+            <ul v-for="samplevar1 in samplevar" class="tableUI">
+              <li>'{{samplevar1}}'</li>
+            </ul>
         </div>
     </div>
 </template>
@@ -21,7 +26,7 @@ export default {
             regexStmtCol:/(colName:(\w+) dataType:(\w+))/g,
             regexStmtCol2:/((?<=:)(\w+))/g,
             extracted:"",
-            extracted2:"",
+            bridge:"",
             samplevar:""
         }
     },
@@ -32,8 +37,8 @@ export default {
             //console.log(this.textCon.split(this.regexStmtCol)),
             //console.log(this.textCon.match(this.regexStmtCol))
             this.extracted=this.textCon.match(this.regexStmtCol)
-            this.extracted2=this.textCon
-            this.samplevar=this.extracted2.match(this.regexStmtCol2)
+            this.bridge=this.textCon
+            this.samplevar=this.bridge.match(this.regexStmtCol2)
         }
     },
 }
@@ -92,6 +97,15 @@ export default {
       flex-flow: row;
       flex: 1 1 0;
       justify-content: center;
+    }
+
+    .tableUI{
+      list-style: none;
+      display:flex;
+      flex-flow: column;
+      max-width: 200px;
+      text-align: center;
+      flex:1;
     }
   /*Vue js built in transition*/
 .fade-enter-active, .fade-leave-active {
