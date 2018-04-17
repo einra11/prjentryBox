@@ -57,7 +57,7 @@ export default {
         display: flex;
         flex-flow: column;
         max-height: 60px;
-        box-shadow: 0px 0px 45px -15px rgba(0,0,0,0.44);
+
     }
     .box li{
       background: orange;
