@@ -1,0 +1,8 @@
+https://regexr.com/
+https://regexone.com/lesson/conditionals
+
+
+	(colName:(\w+) dataType:(\w+))
+
+
+https://youtu.be/c9HbsUSWilw?t=345 - tutorial regex
