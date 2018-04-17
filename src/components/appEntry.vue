@@ -55,6 +55,7 @@ export default {
         list-style-type: none;
         margin: 5px;
         margin-bottom: 10px;
+        margin-top: 0;
         padding: 15px;
         display: flex;
         flex-flow: column;
