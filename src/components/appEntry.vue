@@ -6,6 +6,7 @@
             <div class="buttonG">
               <button type="button" v-on:click="testmyreg">OK</button>
             </div>
+            <p v-for="extract in extracted">{{extract}}</p>
         </div>
     </div>
 </template>
@@ -16,6 +17,7 @@ export default {
         return{
             textCon:"colName:userID dataType:integer colName:userName dataType:varchar colName:userPassword dataType:varchar",
             regexStmtCol:/(colName:(\w+) dataType:(\w+))/g,
+            extracted:""
         }
     },
     methods:{
@@ -24,6 +26,7 @@ export default {
             //this.extracted=this.textCon[1].split(this.regexStmtCol)
             //console.log(this.textCon.split(this.regexStmtCol)),
             console.log(this.textCon.match(this.regexStmtCol))
+            this.extracted=this.textCon.match(this.regexStmtCol)
         }
     },
 }
