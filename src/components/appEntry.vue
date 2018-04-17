@@ -2,7 +2,6 @@
         <div class="box">
             <ul>
                 <li><input  type="text" placeholder="Entry" required/></input></li>
-                <p>{{extracted[1]}}</p>
             </ul>
             <div class="buttonG">
               <button type="button" v-on:click="testmyreg">OK</button>
@@ -15,18 +14,16 @@
 export default {
      data () {
         return{
-            textCon:"colName:tbStudents dataType:date colName:tbUser dataType:var",
-            regexStmtCol:/(colName:(\w+) dataType:(\w+))/,
-            extracted:""
+            textCon:"colName:userID dataType:integer colName:userName dataType:varchar colName:userPassword dataType:varchar",
+            regexStmtCol:/(colName:(\w+) dataType:(\w+))/g,
         }
     },
     methods:{
         testmyreg:function(){
             //console.log(this.regexStmtCol.test(this.textCon[i]))
             //this.extracted=this.textCon[1].split(this.regexStmtCol)
-            console.log(this.textCon.split(this.regexStmtCol)),
-            this.extracted=this.textCon.split(this.regexStmtCol)
-            console.log(this.extracted)
+            //console.log(this.textCon.split(this.regexStmtCol)),
+            console.log(this.textCon.match(this.regexStmtCol))
         }
     },
 }
