@@ -1,20 +1,11 @@
 <template>
-    <div class="module1">
-      <transition name="slide-fade">
-      <div v-if="state2" class="modal">
-        <h3>Submitted!</h3>
-      </div>
-    </transition>
-
         <div class="box">
             <ul>
-                <li><input  type="text" :placeholder="entries[index]" required/></input></li>
+                <li><input  type="text" placeholder="Entry" required/></input></li>
+                <p>{{extracted[1]}}</p>
             </ul>
             <div class="buttonG">
-              <button type="button" v-on:click="index++ && checkIndex()">Next</button>
-              <transition name="fade">
-                <button v-if="state" type="button" v-on:click="state2=true">OK</button>
-              </transition>
+              <button type="button" v-on:click="testmyreg">OK</button>
             </div>
         </div>
     </div>
@@ -24,20 +15,18 @@
 export default {
      data () {
         return{
-            textSize:null,
-            textDesc:"",
-            entries:['Name','Size', 'Description','DataType'],
-            index:0,
-            state1:false,
-            state2:false
+            textCon:"colName:tbStudents dataType:date colName:tbUser dataType:var",
+            regexStmtCol:/(colName:(\w+) dataType:(\w+))/,
+            extracted:""
         }
     },
     methods:{
-        checkIndex:function(){
-            if(this.index>=4){
-                this.index=0,
-                this.state=true
-            }
+        testmyreg:function(){
+            //console.log(this.regexStmtCol.test(this.textCon[i]))
+            //this.extracted=this.textCon[1].split(this.regexStmtCol)
+            console.log(this.textCon.split(this.regexStmtCol)),
+            this.extracted=this.textCon.split(this.regexStmtCol)
+            console.log(this.extracted)
         }
     },
 }
@@ -95,19 +84,6 @@ export default {
       flex-flow: row;
       flex: 1 1 0;
       justify-content: center;
-    }
-
-    .modal{
-      text-align: center;
-      color: #fff;
-      background:#01ba20;
-      width: 150px;
-      padding: 5px;
-      margin-left: 0;
-      margin-right: 0;
-      border-radius: 30px 30px 3px 30px;
-      max-height: 60px;
-      box-shadow: 0px 0px 45px -15px rgba(0,0,0,0.44);
     }
   /*Vue js built in transition*/
 .fade-enter-active, .fade-leave-active {
