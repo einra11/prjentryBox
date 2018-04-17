@@ -7,19 +7,22 @@
               <button type="button" v-on:click="testmyreg">OK</button>
             </div>
             <p v-for="extract in extracted">{{extract}}</p>
+            <p v-for="samplevar1 in samplevar">'{{samplevar1}}'</p>
         </div>
     </div>
 </template>
-
 <script>
 export default {
      data () {
         return{
-            //colName:userID dataType:integer colName:userName dataType:varchar colName:userPassword dataType:varchar
+              //colName:userID dataType:integer colName:userName dataType:varchar colName:userPassword dataType:varchar
             //I used already V-MODEL!!
             textCon:"",
             regexStmtCol:/(colName:(\w+) dataType:(\w+))/g,
-            extracted:""
+            regexStmtCol2:/((?<=:)(\w+))/g,
+            extracted:"",
+            extracted2:"",
+            samplevar:""
         }
     },
     methods:{
@@ -27,8 +30,10 @@ export default {
             //console.log(this.regexStmtCol.test(this.textCon[i]))
             //this.extracted=this.textCon[1].split(this.regexStmtCol)
             //console.log(this.textCon.split(this.regexStmtCol)),
-            console.log(this.textCon.match(this.regexStmtCol))
+            //console.log(this.textCon.match(this.regexStmtCol))
             this.extracted=this.textCon.match(this.regexStmtCol)
+            this.extracted2=this.textCon
+            this.samplevar=this.extracted2.match(this.regexStmtCol2)
         }
     },
 }
