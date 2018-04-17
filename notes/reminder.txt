@@ -6,3 +6,6 @@ https://regexone.com/lesson/conditionals
 
 
 https://youtu.be/c9HbsUSWilw?t=345 - tutorial regex
+
+
+(colName:(\w+) dataType:(\w+))
