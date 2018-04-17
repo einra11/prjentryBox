@@ -1,8 +1,8 @@
 <template>
   <div id="globe">
-      <div class="">
+      <div class="body1">
           <app-head class="head1" v-bind:title="title"></app-head>
-          <app-entry class="body1"></app-entry>
+          <app-entry></app-entry>
       </div>
   </div>
 </template>
@@ -38,6 +38,6 @@ background: #e1e4ea;
   border-radius: 3px 3px 0px 0px;
 }
 .body1{
-  box-shadow: 0px 0px 45px -15px rgba(0,0,0,0.44);
+  box-shadow: 0px 0px 45px -8px rgba(0,0,0,0.44);
 }
 </style>
