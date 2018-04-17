@@ -1,7 +1,7 @@
 <template>
         <div class="box">
             <ul>
-                <li><input  type="text" placeholder="Entry" required/></input></li>
+                <li><input  type="text" placeholder="Entry" v-model="textCon" required/></input></li>
             </ul>
             <div class="buttonG">
               <button type="button" v-on:click="testmyreg">OK</button>
@@ -15,7 +15,9 @@
 export default {
      data () {
         return{
-            textCon:"colName:userID dataType:integer colName:userName dataType:varchar colName:userPassword dataType:varchar",
+            //colName:userID dataType:integer colName:userName dataType:varchar colName:userPassword dataType:varchar
+            //I used already V-MODEL!!
+            textCon:"",
             regexStmtCol:/(colName:(\w+) dataType:(\w+))/g,
             extracted:""
         }
