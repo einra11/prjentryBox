@@ -30,6 +30,7 @@ export default {
             regexStmtCol2:/(\w+)/g,
             extracted:"",
             samplevarjoined:"",
+            samplevar:"",
             myArr:[]
         }
     },
@@ -43,12 +44,16 @@ export default {
             // console.log(this.samplevarjoined)
             // I can also get single value and push every value that i get to the specific slot in myArr
             // put a limitation
-            this.extracted=this.textCon.match(this.regexStmtCol2)
+            this.samplevar=this.extracted=this.textCon.match(this.regexStmtCol)
+            // this.extracted=this.textCon.match(this.regexStmtCol2)
             console.log(this.extracted)
-            this.samplevarjoined="["+this.extracted.join(',')+"]"
-            this.myArr.push(this.samplevarjoined)
-            console.log(this.samplevarjoined)
-            console.log(this.myArr)
+            //this.samplevar=this.extracted
+            this.samplevar.match(this.regexStmtCol2)
+            console.log(this.samplevar)
+            // this.samplevarjoined="["+this.extracted.join(',')+"]"
+            // this.myArr.push(this.samplevarjoined)
+            // console.log(this.samplevarjoined)
+            // console.log(this.myArr)
         }
     },
 }
