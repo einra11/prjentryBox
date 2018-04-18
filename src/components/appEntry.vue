@@ -10,9 +10,7 @@
             <ul v-for="extract in extracted" class="tableUI">
               <li>{{extract}}</li>
             </ul>
-            <ul v-for="samplevar1 in samplevar" class="tableUI">
-              <li>'{{samplevar1}}'</li>
-            </ul>
+            <h1>{{samplevarjoined}}</h1>
         </div>
     </div>
 </template>
@@ -23,22 +21,25 @@ export default {
               //colName:userID dataType:integer colName:userName dataType:varchar colName:userPassword dataType:varchar
             //I used already V-MODEL!!
             textCon:"",
-            regexStmtCol:/(colName:(\w+) dataType:(\w+))/g,
-            regexStmtCol2:/((?<=:)(\w+))/g,
+            //regexStmtCol:/(colName:(\w+) dataType:(\w+))/g,
+            regexStmtCol:/(varchar:(\w+) (\w+))/g,
+            //regexStmtCol2:/((?<=:)(\w+))/g,
+            regexStmtCol2:/(\w+)/g,
             extracted:"",
-            bridge:"",
-            samplevar:""
+            samplevarjoined:""
         }
     },
     methods:{
         testmyreg:function(){
-            //console.log(this.regexStmtCol.test(this.textCon[i]))
-            //this.extracted=this.textCon[1].split(this.regexStmtCol)
-            //console.log(this.textCon.split(this.regexStmtCol)),
-            //console.log(this.textCon.match(this.regexStmtCol))
-            this.extracted=this.textCon.match(this.regexStmtCol)
-            this.bridge=this.textCon
-            this.samplevar=this.bridge.match(this.regexStmtCol2)
+            // this.extracted=this.textCon.match(this.regexStmtCol)
+            // this.bridge=this.textCon
+            // console.log(this.textCon)
+            // this.samplevar=this.bridge.match(this.regexStmtCol2)
+            // this.samplevarjoined="["+this.samplevar.join(',')+"]"
+            // console.log(this.samplevarjoined)
+            this.extracted=this.textCon.match(this.regexStmtCol2)
+            this.samplevarjoined="["+this.extracted.join(',')+"]"
+            console.log(this.samplevarjoined)
         }
     },
 }
