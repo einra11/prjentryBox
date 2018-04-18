@@ -11,6 +11,9 @@
               <li>{{extract}}</li>
             </ul>
             <h1>{{samplevarjoined}}</h1>
+            <ul v-for="arrayF in myArr" class="tableUI">
+              <li>{{arrayF}}</li>
+            </ul>
         </div>
     </div>
 </template>
@@ -22,11 +25,12 @@ export default {
             //I used already V-MODEL!!
             textCon:"",
             //regexStmtCol:/(colName:(\w+) dataType:(\w+))/g,
-            regexStmtCol:/(varchar:(\w+) (\w+))/g,
+            regexStmtCol:/(varchar:\w+ \w+)/gy,
             //regexStmtCol2:/((?<=:)(\w+))/g,
             regexStmtCol2:/(\w+)/g,
             extracted:"",
-            samplevarjoined:""
+            samplevarjoined:"",
+            myArr:[]
         }
     },
     methods:{
@@ -37,9 +41,14 @@ export default {
             // this.samplevar=this.bridge.match(this.regexStmtCol2)
             // this.samplevarjoined="["+this.samplevar.join(',')+"]"
             // console.log(this.samplevarjoined)
+            // I can also get single value and push every value that i get to the specific slot in myArr
+            // put a limitation
             this.extracted=this.textCon.match(this.regexStmtCol2)
+            console.log(this.extracted)
             this.samplevarjoined="["+this.extracted.join(',')+"]"
+            this.myArr.push(this.samplevarjoined)
             console.log(this.samplevarjoined)
+            console.log(this.myArr)
         }
     },
 }
