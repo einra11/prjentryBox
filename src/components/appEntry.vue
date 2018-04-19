@@ -5,12 +5,8 @@
             </ul>
             <div class="buttonG">
               <button type="button" v-on:click="testmyreg">OK</button>
+              <button type="button" v-on:click="waiting" v-on:click.prevent="post" :class="state">Submit</button>
             </div>
-
-            <ul v-for="extract in extracted" class="tableUI">
-              <li>{{extract}}</li>
-            </ul>
-            <h1>{{samplevarjoined}}</h1>
             <ul v-for="arrayF in myArr" class="tableUI">
               <li>{{arrayF}}</li>
             </ul>
@@ -21,39 +17,43 @@
 export default {
      data () {
         return{
-              //colName:userID dataType:integer colName:userName dataType:varchar colName:userPassword dataType:varchar
-            //I used already V-MODEL!!
             textCon:"",
-            //regexStmtCol:/(colName:(\w+) dataType:(\w+))/g,
-            regexStmtCol:/(varchar:\w+ \w+)/gy,
-            //regexStmtCol2:/((?<=:)(\w+))/g,
+            regexStmtCol:/((varchar|int|text|double):\d+ \w+)/gy,
             regexStmtCol2:/(\w+)/g,
             extracted:"",
+            extraction2:"",
             samplevarjoined:"",
             samplevar:"",
-            myArr:[]
+            myArr:[],
+            submitted:false,
+            state:""
         }
     },
     methods:{
         testmyreg:function(){
-            // this.extracted=this.textCon.match(this.regexStmtCol)
-            // this.bridge=this.textCon
-            // console.log(this.textCon)
-            // this.samplevar=this.bridge.match(this.regexStmtCol2)
-            // this.samplevarjoined="["+this.samplevar.join(',')+"]"
-            // console.log(this.samplevarjoined)
-            // I can also get single value and push every value that i get to the specific slot in myArr
-            // put a limitation
-            this.samplevar=this.extracted=this.textCon.match(this.regexStmtCol)
-            // this.extracted=this.textCon.match(this.regexStmtCol2)
-            console.log(this.extracted)
-            //this.samplevar=this.extracted
-            this.samplevar.match(this.regexStmtCol2)
-            console.log(this.samplevar)
-            // this.samplevarjoined="["+this.extracted.join(',')+"]"
-            // this.myArr.push(this.samplevarjoined)
-            // console.log(this.samplevarjoined)
-            // console.log(this.myArr)
+            this.extracted=this.textCon.match(this.regexStmtCol)
+            this.samplevar=this.extracted.join('')
+            this.extraction2=this.samplevar.match(this.regexStmtCol2)
+            this.myArr.push(this.extraction2)
+            console.log(this.myArr)
+        },
+        post:function(){
+            this.$http.post('http://jsonplaceholder.typicode.com/posts',{
+                array:this.myArr
+            }).then(function(data){
+                console.log(data);
+                this.submitted=true;
+                setTimeout(() => this.state="", 200);
+            });
+        },
+        waiting:function(){
+          if(this.submitted==false)
+          {
+            this.state="loading"
+          }
+          else if (this.submitted==true) {
+            this.state=""
+          }
         }
     },
 }
@@ -104,8 +104,10 @@ export default {
         margin: 0px 10px 10px 10px;
         box-shadow: 0px 0px 45px -15px rgba(0,0,0,0.44);
     }
-    button:hover{
-        background:#3498db;
+    .loading{
+      background: url(../assets/loading.gif) no-repeat center;
+      background-size: 150%;
+      text-indent: -10000px;
     }
     .buttonG{
       display: flex;
