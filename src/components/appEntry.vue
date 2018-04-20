@@ -45,6 +45,9 @@ export default {
                 this.extraction2=this.samplevar.match(this.regexStmtCol2)
                 this.myArr.push(this.extraction2)
                 console.log(this.myArr)
+                this.extracted=""
+                this.samplevar=""
+                this.extraction2=""
             }
             else{
                 alert('default value')
@@ -52,6 +55,8 @@ export default {
                 this.extraction2=this.extracted.match(this.regexStmtCol2)
                 this.myArr.push(this.extraction2)
                 console.log(this.myArr)
+                this.extracted=""
+                this.extraction2=""
             }
         },
         post:function(){
