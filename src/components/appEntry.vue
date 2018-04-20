@@ -27,6 +27,7 @@ export default {
             textCon:"",
             regexStmtCol:/((varchar|int|text|double|date):\d+ \w+)/gy,
             regexStmtCol2:/(\w+)/g,
+            regexStmtTest:/\w+/gy,
             extracted:"",
             extraction2:"",
             samplevarjoined:"",
@@ -38,11 +39,20 @@ export default {
     },
     methods:{
         testmyreg:function(){
-            this.extracted=this.textCon.match(this.regexStmtCol)
-            this.samplevar=this.extracted.join('')
-            this.extraction2=this.samplevar.match(this.regexStmtCol2)
-            this.myArr.push(this.extraction2)
-            console.log(this.myArr)
+            if (this.textCon.match(this.regexStmtCol)) {
+                this.extracted=this.textCon.match(this.regexStmtCol)
+                this.samplevar=this.extracted.join('')
+                this.extraction2=this.samplevar.match(this.regexStmtCol2)
+                this.myArr.push(this.extraction2)
+                console.log(this.myArr)
+            }
+            else{
+                alert('default value')
+                this.extracted="text:50 "+(this.textCon)
+                this.extraction2=this.extracted.match(this.regexStmtCol2)
+                this.myArr.push(this.extraction2)
+                console.log(this.myArr)
+            }
         },
         post:function(){
             this.$http.post('http://jsonplaceholder.typicode.com/posts',{
