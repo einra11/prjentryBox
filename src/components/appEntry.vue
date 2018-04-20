@@ -1,15 +1,22 @@
 <template>
         <div class="box">
-            <ul>
-                <li><input  type="text" placeholder="Entry" v-model="textCon" required/></input></li>
-            </ul>
-            <div class="buttonG">
-              <button type="button" v-on:click="testmyreg">OK</button>
-              <button type="button" v-on:click="waiting" v-on:click.prevent="post" :class="state">Submit</button>
+            <div v-show="!submitted">
+                <ul>
+                    <li><input  type="text" placeholder="Entry" v-model="textCon" required/></input></li>
+                </ul>
+                <div class="buttonG">
+                  <button type="button" v-on:click="testmyreg">OK</button>
+                  <button type="button" v-on:click="waiting" v-on:click.prevent="post" :class="state">Submit</button>
+                </div>
+                <ul v-for="arrayF in myArr" class="tableUI">
+                  <li>{{arrayF}}</li>
+                </ul>
             </div>
-            <ul v-for="arrayF in myArr" class="tableUI">
-              <li>{{arrayF}}</li>
-            </ul>
+            <transition name="slide-fade">
+            <div v-show="submitted" class="success">
+                <h1>Submitted</h1>
+            </div>
+        </transition>
         </div>
     </div>
 </template>
@@ -18,7 +25,7 @@ export default {
      data () {
         return{
             textCon:"",
-            regexStmtCol:/((varchar|int|text|double):\d+ \w+)/gy,
+            regexStmtCol:/((varchar|int|text|double|date):\d+ \w+)/gy,
             regexStmtCol2:/(\w+)/g,
             extracted:"",
             extraction2:"",
@@ -123,6 +130,11 @@ export default {
       max-width: 200px;
       text-align: center;
       flex:1;
+    }
+    .success{
+        font-family:'Fira Sans', sans-serif;
+        padding: 10px;
+        background-color: yellow;
     }
   /*Vue js built in transition*/
 .fade-enter-active, .fade-leave-active {

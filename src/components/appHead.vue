@@ -1,7 +1,6 @@
 <template>
     <div class="appHead" :class="status">
         <input type="text" placeholder="Enter title" title="Change title" :value="title">
-        <h1>{{status}}</h1>
     </div>
 </template>
 <script>
